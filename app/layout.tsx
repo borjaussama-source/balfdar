@@ -1,0 +1,6 @@
+import type { Metadata } from "next";
+import "./globals.css";
+import "./theme.css";
+export const metadata: Metadata = { title: "BALFDAR — Le style, sans compromis", description: "Une sélection de pièces contemporaines et vintage, choisies avec intention." };
+const themeBootstrap=`(()=>{let mode="system",language="en";try{const saved=localStorage.getItem("akker-theme");if(saved==="light"||saved==="dark"||saved==="system")mode=saved;const locale=localStorage.getItem("akker-language");if(locale==="en"||locale==="fr"||locale==="ar")language=locale;else if(navigator.language.toLowerCase().startsWith("ar"))language="ar";else if(navigator.language.toLowerCase().startsWith("fr"))language="fr"}catch{}const dark=mode==="dark"||(mode==="system"&&window.matchMedia("(prefers-color-scheme: dark)").matches),root=document.documentElement;root.dataset.theme=dark?"dark":"light";root.dataset.themePreference=mode;root.style.colorScheme=dark?"dark":"light";root.lang=language;root.dir=language==="ar"?"rtl":"ltr"})()`;
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) { return <html lang="en" dir="ltr" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html:themeBootstrap}}/></head><body>{children}</body></html>; }

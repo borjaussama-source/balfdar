@@ -1,0 +1,11 @@
+"use client";
+import { useMemo,useState } from "react";
+import { ArrowUpRight,Search } from "lucide-react";
+import type { Product } from "@/lib/products";
+const money=(n:number)=>new Intl.NumberFormat("fr-MA",{style:"currency",currency:"MAD",maximumFractionDigits:0}).format(n);
+export default function CollectionProductGrid({products}:{products:Product[]}){
+ const [category,setCategory]=useState("Tout"),[query,setQuery]=useState("");
+ const categories=["Tout",...Array.from(new Set(products.map(product=>product.category).filter(Boolean)))];
+ const shown=useMemo(()=>products.filter(product=>(category==="Tout"||product.category===category)&&`${product.name} ${product.description} ${product.category} ${product.colors.join(" ")}`.toLowerCase().includes(query.toLowerCase())),[products,category,query]);
+ return <><div className="filters collection-filters"><div className="filter-list">{categories.map(value=><button type="button" key={value} className={category===value?"filter active":"filter"} onClick={()=>setCategory(value)}>{value}</button>)}</div><label className="searchbox"><Search size={16}/><input placeholder="Rechercher une pièce" value={query} onChange={event=>setQuery(event.target.value)}/></label></div>{shown.length===0?<p className="catalog-message">Aucune pièce ne correspond à cette recherche.</p>:<div className="grid collection-product-grid">{shown.map(product=><article className="product" key={product.id}><a className="product-image" href={`/?product=${encodeURIComponent(product.id)}#collection`} aria-label={`Voir ${product.name}`}><img className="product-image-primary" src={product.images[0]??"/balfdar-logo.png"} alt={`Visuel de ${product.name}`} loading="lazy"/>{product.images[1]&&<img className="product-image-secondary" src={product.images[1]} alt="" loading="lazy"/>}<span className="product-tag">{product.stock>0?"SÉLECTION BALFDAR":"ÉPUISÉ"}</span><span className="quick-add"><ArrowUpRight size={16}/> DÉCOUVRIR</span></a><div className="product-info" data-no-translate><div><h3>{product.name}</h3><p>{product.category}{product.colors.length?` · ${product.colors.join(" · ")}`:""}</p></div><strong>{product.discountPriceMad?<><del>{money(product.priceMad)}</del> {money(product.discountPriceMad)}</>:money(product.priceMad)}</strong></div></article>)}</div>}</>
+}
