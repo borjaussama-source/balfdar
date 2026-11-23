@@ -1,0 +1,12 @@
+{
+  "name": "balfdar-store-promo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Configurable BALFDAR product promo video renderer",
+  "scripts": {
+    "render": "node src/render.mjs"
+  },
+  "dependencies": {
+    "ffmpeg-static": "5.2.0"
+  }
+}

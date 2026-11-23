@@ -1,0 +1,34 @@
+{
+  "brand": "BALFDAR",
+  "brandLine": "MAISON DE SÉLECTION · CASABLANCA",
+  "tagline": "Le style sans compromis.",
+  "contact": "+212 611-923996",
+  "whatsappUrl": "https://wa.me/212611923996",
+  "language": "fr",
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 24,
+    "introSeconds": 2.8,
+    "productSeconds": 4.7,
+    "outroSeconds": 3.8,
+    "transitionSeconds": 0.35,
+    "music": true
+  },
+  "products": [
+    {
+      "name": "vest",
+      "description": "black vest with good quality",
+      "priceMad": 400,
+      "image": "assets/products/vest-400.jpg",
+      "cropTop": 0.22
+    },
+    {
+      "name": "vest",
+      "description": "black vest with good quality",
+      "priceMad": 300,
+      "image": "assets/products/vest-300.jpg",
+      "cropTop": 0
+    }
+  ]
+}

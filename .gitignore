@@ -3,6 +3,7 @@ node_modules/
 .next-*/
 .data/
 startup-logs/
+*.tsbuildinfo
 .env
 .env.*
 !.env.example
